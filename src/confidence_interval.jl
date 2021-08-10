@@ -76,7 +76,7 @@ end
 function ConfidenceInterval(
     xs::AbstractVector{T},
     ys::AbstractVector{T},
-    es::T;
+    es::Real;
     quantile::AbstractFloat,
 ) where T<:Real
 
