@@ -73,6 +73,11 @@ struct ConfidenceInterval{T<:Real} <: AbstractConfidenceInterval{T}
     end
 end
 
+#= The confidence intervals section needs to be revised: t distribution
+explanation and further references in: 
+What If There Were No Significance Tests? Edited ByLisa L. Harlow, Stanley A. Mulaik, James H. Steiger, chapter 9 https://doi.org/10.4324/9781315827353 
+
+                    
 function ConfidenceInterval(
     xs::AbstractVector{T},
     ys::AbstractVector{T},
@@ -94,7 +99,8 @@ function ConfidenceInterval(
         quantile,
     )
 end
-
+=#
+                    
 confint(ci::ConfidenceInterval) = ci.ci
 quantile(ci::ConfidenceInterval) = ci.quantile
 
