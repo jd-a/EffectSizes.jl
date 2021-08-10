@@ -49,6 +49,13 @@ using EffectSizes: AbstractEffectSize, correction, pooledstd1, pooledstd2, _effe
 
         @test effectsize(T(xs, xs, 100)) == 0
     end
+
+    @testset "Integers" begin
+        # Smoke tests for `Int`s.
+        xs = round.(Int, randn(90) .* 10)
+        ys = round.(Int, randn(110) .* 10)
+        T(xs, ys, quantile=0.95)
+    end
 end
 
 @testset "correction" begin
