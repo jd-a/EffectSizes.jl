@@ -1,9 +1,11 @@
-"""
-    EffectSizes
-
-A Julia package for effect size measures.
-"""
 module EffectSizes
+
+using Statistics
+using Distributions
+using StatsBase
+
+import Distributions: quantile
+import StatsBase: confint
 
 export
     AbstractEffectSize,
@@ -20,13 +22,20 @@ export
     lower,
     upper
 
+"""
+    _update_module_doc()
 
-using Statistics
-using Distributions
-using StatsBase
-
-import Distributions: quantile
-import StatsBase: confint
+This function updates the module docs and is called before running the doctests.
+This way, the docs in README.md are also tested.
+"""
+function _update_module_doc()
+    path = joinpath(@__DIR__, "..", "README.md")
+    text = read(path, String)
+    # The code blocks in the README.md should be julia blocks the syntax highlighter.
+    text = replace(text, "```julia" => "```jldoctest")
+    @doc text EffectSizes
+end
+_update_module_doc()
 
 include("confidence_interval.jl")
 include("effect_size.jl")

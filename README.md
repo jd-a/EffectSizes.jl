@@ -18,8 +18,8 @@ Glass's *Δ* | `GlassΔ`
 
 ## Installation
 
-```julia
-] add https://github.com/harryscholes/EffectSizes.jl
+```jl
+julia> import Pkg; Pkg.add("EffectSizes");
 ```
 
 ## Examples
@@ -34,10 +34,10 @@ julia> ys = randn(10^3) .+ 0.5;
 julia> es = CohenD(xs, ys, quantile=0.95); # normal CI (idealised distribution)
 
 julia> typeof(es)
-CohenD{Float64,ConfidenceInterval{Float64}}
+CohenD{Float64, ConfidenceInterval{Float64}}
 
 julia> effectsize(es)
--0.507…
+-0.5477257247459636
 
 julia> quantile(es)
 0.95
@@ -48,23 +48,23 @@ julia> typeof(ci)
 ConfidenceInterval{Float64}
 
 julia> confint(ci)
-(-0.924…, -0.0889…)
+(-0.9660399771191736, -0.12941147237275363)
 
 julia> es = CohenD(xs, ys, 10^4, quantile=0.95); # bootstrap CI (empirical distribution)
 
 julia> effectsize(es) # effect size is the same
--0.507…
+-0.5477257247459636
 
 julia> typeof(es)
-CohenD{Float64,BootstrapConfidenceInterval{Float64}}
+CohenD{Float64, BootstrapConfidenceInterval{Float64}}
 
 julia> ci = confint(es); # confidence interval is different
 
 julia> lower(ci)
--0.597…
+-0.6367371804827419
 
 julia> upper(ci)
--0.418…
+-0.4598929721717412
 ```
 
 ## Contributing
